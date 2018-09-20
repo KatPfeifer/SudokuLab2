@@ -11,7 +11,7 @@ public class LatinSquareTest {
 	@Test
 	public void hasDuplicates_test1() {
 
-		LatinSquare LS = new LatinSquare();
+		LatinSquare LS = new LatinSquare(); 
 		int[] arr = { 1, 3, 5, 2, 4 };
 
 		boolean bHasDuplicates = LS.hasDuplicates(arr);

@@ -114,7 +114,7 @@ public class SudokuTest {
 		}
 		
 	}
-	
+	 
 	@Test(expected = Exception.class)
 	public void Suduko_Bad() throws Exception
 	{
