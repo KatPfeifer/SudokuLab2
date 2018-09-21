@@ -102,6 +102,7 @@ public class LatinSquareTest {
 		System.out.println(Arrays.toString(Row));
 	}
 	
+	
 	@Test
 	public void isLatinSquare_Test1() {
 		

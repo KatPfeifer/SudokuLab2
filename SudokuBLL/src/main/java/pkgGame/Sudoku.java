@@ -9,8 +9,7 @@ public class Sudoku extends LatinSquare{
 private int iSize;
 private int iSqrtSize;
 
-public Sudoku(int iSize) throws Exception
-{
+public Sudoku(int iSize) throws Exception {
 	this.iSize = iSize;
 	double SQRT = Math.sqrt(iSize);
 	
@@ -28,15 +27,17 @@ public Sudoku(int iSize) throws Exception
 	//	Generate Sudoku
 	
 }
-public Sudoku(int[][] puzzle) {
+public Sudoku(int[][] puzzle) throws Exception {
 	super(puzzle);
-	iSqrtSize=(int)Math.round(Math.sqrt(puzzle.length));
-	if (iSqrtSize%1==0) {
-		iSize=puzzle.length;
+	double SQRT = Math.sqrt(puzzle.length);
+	if ((SQRT == Math.floor(SQRT)) && (!Double.isInfinite(SQRT))) {
+		this.iSqrtSize = (int)SQRT;
+		this.iSize=puzzle.length;
+	}
+	else {
+		throw new Exception("Bad Sudoku");
 	}
 }
-
-
 
 public int getiSize() {
 	return iSize;
@@ -75,7 +76,7 @@ public int[] getRegion(int r) {
 					index++;
 				}
 			}
-		}
+		} 
 	}
 	return region;
 }
@@ -100,16 +101,26 @@ public boolean isPartialSudoku() {
 }
 
 public boolean isSudoku() {
+	boolean isASudoku=false;
 	for (int i=0; i<iSize; i++) {
 		if (super.hasDuplicates(getRegion(i))==false) {
 			if (super.hasAllValues(getRegion(0), getRegion(i))==true) {
 				if (super.doesElementExist(getRegion(i), 0)==false) {
-					return true;
+					isASudoku=true;
+				}
+				else {
+					isASudoku=false;
 				}
 			}
+			else {
+				isASudoku=false;
+			}
+		}
+		else {
+			isASudoku=false;
 		}
 	}
-	return false;
+	return isASudoku;
 }
 
 }
